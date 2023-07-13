@@ -42,6 +42,9 @@ function createSquare(numeroCelle,i,randomNumber){
     // singleSquare.innerHTML = i
     singleSquare.innerHTML = `${i}` 
     singleSquare.addEventListener('click',squareclick)
+    if(gameover = 1){
+        block()
+    }
     /**
      * effetto al click di ogni singolo quadrato
      */
@@ -49,7 +52,7 @@ function createSquare(numeroCelle,i,randomNumber){
     this.classList.toggle('bg-primary');
     console.log(this)
     if(listaBomb.includes(i)){
-        block()
+        gameover = 1
 
         alert('bomb')
         
@@ -58,20 +61,19 @@ function createSquare(numeroCelle,i,randomNumber){
     } 
     
     
-    function block(){
-    el = document.querySelectorAll('.square')
-    for (i =0; i<el.length;i++){
-        console.log(el[i])
-        let io =el[i]
-        io.removeEventListener('click',squareclick)
-        // el[i].removeEventListener('click',s)
-    }
-    return 
-    }
+    
     
     return singleSquare
 }
-
+function block(){
+    el = document.querySelectorAll('.square')
+    for (let i =0; i<el.length;i++){
+        console.log(el[i])
+        let io =el[i]
+        io.removeEventListener('click',squareclick)
+    }
+    return 
+    }
 /**
  * creazione dell'array contenente tutte le celle
  * @param {number} numeroCelle valore dato dall utente
